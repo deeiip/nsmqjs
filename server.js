@@ -2,7 +2,7 @@
 (function() {
   var PORT, app, server;
 
-  PORT = 8101;
+  PORT = 80;
 
   app = require("./app");
 

@@ -6,7 +6,9 @@
   RSMQ = require("rsmq");
   
   //rsmq = new RSMQ( {host: "127.0.0.1", port: 6379, ns: "rsmq"} );
-  rsmq = new RSMQ( {host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, ns: "rmsq"} );
+  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  //var redis = require("redis").createClient(rtg.port, rtg.hostname);
+  rsmq = new RSMQ( {host: rtg.hostname, port: rtg.port, ns: "rmsq"} );
   //rsmq = new RSMQ();
 
   express = require('express');

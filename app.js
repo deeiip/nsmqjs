@@ -5,10 +5,13 @@
 
   RSMQ = require("rsmq");
   
-  //rsmq = new RSMQ( {host: "127.0.0.1", port: 6379, ns: "rsmq"} );
-  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  //rsmq = new RSMQ( {host: "127.0.0.1", port: 6379, ns: "rsmq"} )
   //var redis = require("redis").createClient(rtg.port, rtg.hostname);
-  rsmq = new RSMQ( {host: rtg.hostname, port: rtg.port, ns: "rmsq"} );
+  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  var redis_c = require("redis").createClient(rtg.port, rtg.hostname);
+
+  redis.auth(rtg.auth.split(":")[1]);
+  rsmq = new RSMQ( {host: rtg.hostname, port: rtg.port, ns: "rmsq", client: redis_c} );
   //rsmq = new RSMQ();
 
   express = require('express');

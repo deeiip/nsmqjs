@@ -2,12 +2,12 @@
 (function() {
   var PORT, app, server;
 
-  PORT = 80;
+  PORT = process.env.PORT;
 
   app = require("./app");
 
   server = app.listen(PORT);
 
-  console.log("Listening on port " + PORT);
+  //console.log("Listening on port " + PORT);
 
 }).call(this);
